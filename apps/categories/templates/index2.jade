@@ -34,21 +34,11 @@ block body
         .gene-families__family
           .gene-families__family__name
             = family.name
-          .gene-families__columns
-            for column in family.columns
-              .gene-families__columns__column
-                for gene in column
-                  .gene-families__family__gene
-                    a( href = gene.href() )= gene.get('name')
-
-    if geneCategories && geneCategories.at(0)
-      section#categories-page-gene-categories
-        for categorySet in geneCategories.at(0).get('items').models
-          .category-set.gene-category
-            h3.category-set-header
-              = categorySet.get('name')
-            .category-set-categories
-              for gene in categorySet.get('items').models
+          .gene_families__family__rail
+            - categoryId = geneFamilyOrderedSetMapping[family.name]
+            - categorySet = geneCategories.at(0).get('items').findWhere({id: categoryId})
+            if categorySet
+              for gene in _.first(categorySet.get('items').models, 4)
                 a.category-set-category.hoverable-image-link( href=gene.get('href'), data-id=gene.get('id') )
                   img.hoverable-image.csc-image(
                     src= gene.imageUrl('medium_rectangle')
@@ -56,3 +46,25 @@ block body
                   )
                   .csc-title
                     = gene.get('title')
+          .gene-families__columns
+            for column in family.columns
+              .gene-families__columns__column
+                for gene in column
+                  .gene-families__family__gene
+                    a( href = gene.href() )= gene.get('name')
+
+    //- if geneCategories && geneCategories.at(0)
+    //-   section#categories-page-gene-categories
+    //-     for categorySet in geneCategories.at(0).get('items').models
+    //-       .category-set.gene-category
+    //-         h3.category-set-header
+    //-           = categorySet.get('name')
+    //-         .category-set-categories
+    //-           for gene in categorySet.get('items').models
+    //-             a.category-set-category.hoverable-image-link( href=gene.get('href'), data-id=gene.get('id') )
+    //-               img.hoverable-image.csc-image(
+    //-                 src= gene.imageUrl('medium_rectangle')
+    //-                 alt= gene.get('title')
+    //-               )
+    //-               .csc-title
+    //-                 = gene.get('title')
