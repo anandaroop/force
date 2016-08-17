@@ -6,5 +6,6 @@ app.set 'views', "#{__dirname}/templates"
 app.set 'view engine', 'jade'
 
 app.get '/categories', routes.index
+app.get '/categories2', routes.index2
 app.get '/category', routes.redirectCategory
 app.get '/gene', routes.redirectGene  # '/genes' also redirects to '/categories'
