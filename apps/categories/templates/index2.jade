@@ -9,49 +9,58 @@ append locals
 block body
 
   .categories-page.main-layout-container
-    header.categories-header.sixty-forty-bisected-header
-      .bisected-header-cell
-        h1.categories-header-large
-          | The Art Genome Project
 
-        p.categories-blurb
-          | The Art Genome Project is the classification system and technological framework that powers Artsy.
-          | It maps the characteristics (we call them &ldquo;genes&rdquo;) that connect artists, artworks, architecture, and design objects across history.
-          | There are currently over 1,000 characteristics in The Art Genome Project, including art historical movements, subject matter, and formal qualities.
+    .categories-nav-container
+      ul
+        for family in geneFamilyColumns
+          li
+            a.categories-nav-container__link( data-name=family.name class='js-family-link' )= family.name
 
-    section.categories-featured
-      h3.category-set-header
-        | Featured Categories
-      .grid-2-up
-        for gene in featuredGenes.models
-          .grid-item: a.hoverable-image-link( href= gene.get('href'), data-id=gene.get('id') )
-            img( src= gene.imageUrl('large_rectangle'), alt= gene.get('title') )
-            .csc-title
-              = gene.get('title')
+    .categories-content-container
+      h1.categories-header-large
+        | The Art Genome Project
 
-    section.gene-families
-      for family in geneFamilyColumns
-        .gene-families__family
-          .gene-families__family__name
-            = family.name
-          .gene_families__family__rail
-            - categoryId = geneFamilyOrderedSetMapping[family.name]
-            - categorySet = geneCategories.at(0).get('items').findWhere({id: categoryId})
-            if categorySet
-              for gene in _.first(categorySet.get('items').models, 4)
-                a.category-set-category.hoverable-image-link( href=gene.get('href'), data-id=gene.get('id') )
-                  img.hoverable-image.csc-image(
-                    src= gene.imageUrl('medium_rectangle')
-                    alt= gene.get('title')
-                  )
-                  .csc-title
-                    = gene.get('title')
-          .gene-families__columns
-            for column in family.columns
-              .gene-families__columns__column
-                for gene in column
-                  .gene-families__family__gene
-                    a( href = gene.href() )= gene.get('name')
+      p.categories-blurb
+        | The Art Genome Project is the classification system and technological framework that powers Artsy.
+        | It maps the characteristics (we call them &ldquo;genes&rdquo;) that connect artists, artworks, architecture, and design objects across history.
+        | There are currently over 1,000 characteristics in The Art Genome Project, including art historical movements, subject matter, and formal qualities.
+
+
+      section.categories-featured
+        h3.category-set-header
+          | Featured Categories
+        .grid-2-up
+          for gene in featuredGenes.models
+            .grid-item: a.hoverable-image-link( href= gene.get('href'), data-id=gene.get('id') )
+              img( src= gene.imageUrl('large_rectangle'), alt= gene.get('title') )
+              .csc-title
+                = gene.get('title')
+
+      section.gene-families
+        for family in geneFamilyColumns
+          .gene-families__family( data-name=family.name )
+            .gene-families__family__name
+              = family.name
+            .gene_families__family__rail
+              //- clean this mess up
+              - categoryId = geneFamilyOrderedSetMapping[family.name]
+              - categorySet = geneCategories.at(0).get('items').findWhere({id: categoryId})
+              if categorySet
+                = JSON.stringify(categorySet)
+                for gene in _.first(categorySet.get('items').models, 3)
+                  a.category-set-category.hoverable-image-link( href=gene.get('href'), data-id=gene.get('id') )
+                    img.hoverable-image.csc-image(
+                      src= gene.imageUrl('medium_rectangle')
+                      alt= gene.get('title')
+                    )
+                    .csc-title
+                      = gene.get('title')
+            .gene-families__columns
+              for column in family.columns
+                .gene-families__columns__column
+                  for gene in column
+                    .gene-families__family__gene
+                      a( href = gene.href() )= gene.get('name')
 
     //- if geneCategories && geneCategories.at(0)
     //-   section#categories-page-gene-categories

@@ -3,6 +3,28 @@
 .categories-page
   padding 40px 0
 
+.categories-nav-container
+  display inline-block
+  // outline solid 1px red
+  width calc(20%)
+  vertical-align top
+  position fixed
+  ul li 
+    a
+      avant-garde()
+      display block
+      margin 15px 0
+      font-size 13px
+      line-height 1.2
+      color #999
+      &.active
+        color purple-color
+        font-weight bold
+.categories-content-container
+  display inline-block
+  margin-left 25%
+  width 75%
+
 .categories-header
   position relative
   > h1
@@ -16,22 +38,22 @@
   font-size 50px
 .categories-blurb
   margin 30px 0
-  font-size 20px
-  line-height 1.4
+  font-size 22px
+  line-height 1.5
 
 .category-set
   margin 60px 0
   font-size 0
 .category-set-header
-.categories-az-header
+.categories-az-header // deprecate
   margin 30px 5px
-  font-size 25px
+  font-size 30px
 .category-set-categories
   margin 20px 0
 .category-set-category
   position relative
   display inline-block
-  width calc('25% - 10px')
+  width calc('33% - 10px')
   margin 5px
   vertical-align bottom
 .csc-title
@@ -77,4 +99,4 @@
 .gene-families__columns__column
   display inline-block
   vertical-align top
-  width 25%
+  width 33%

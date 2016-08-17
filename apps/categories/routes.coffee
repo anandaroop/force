@@ -28,21 +28,20 @@ OrderedSets = require '../../collections/ordered_sets'
 
   # hackathon yolo
   geneFamilyOrderedSetMapping = {
-    'Subject Matter': '51ba3bcb0abd8521b3000022'
+    'Design Concepts and Techniques': '57b4edc7139b21352c005073'
+    'Furniture & Lighting': '57b4ef2fcd530e65f70008ea'
+    'Jewelry and Fashion Object Types': '57b4ef2fcd530e65f70008ea'
+    'Materials': '57b4b2af139b21352c004ca7'
     'Medium and Techniques': '51ba3bcc0abd8521b300002f'
     'Style or Movement': '51ba3bcf0abd8521b300003e'
-    'Geographic Region': '555cc2ab726169708aa50300'
-    'Materials': '57b4b2af139b21352c004ca7'
+    'Subject Matter': '51ba3bcb0abd8521b3000022'
+    'Tableware, Vessels, Objects': '57b4ebdb139b2135c00050c8'
     'Visual Qualities': '57b4b3977622dd65f80006dc'
-    # 'Design Concepts and Techniques': 'tk'
-    # 'Furniture & Lighting': 'tk'
-    # 'Jewelry and Fashion Object Types': 'tk'
-    # 'Tableware, Vessels, Objects': 'tk'
-    # 'Textiles': 'tk'
-    # 'Time Period': 'tk'
-    # 'Artistic Discipline': 'tk'
-    # 'Antiquities, Artifacts and Religious Objects': 'tk'
-    # 'Cultural or Religious Styles'    : 'tk'
+    'Time Period': '57b4ec8db202a369610009de'
+    'Geographic Region': '555cc2ab726169708aa50300'
+    'Discipline': '57b4ecb0b202a369610009e0'
+    'Antiquities, Artifacts and Religious Objects': '57b4ed478b3b811bc8004d29'
+    'Cultural or Religious Styles': '57b4ed98b202a367ac000a9e'
   }
 
 
@@ -52,7 +51,7 @@ OrderedSets = require '../../collections/ordered_sets'
     genes.fetchUntilEndInParallel(cache: true, data: published: true, sort: 'name')
   ]).done ->
     geneFamilies = genes.groupByFamily()
-    geneFamilyColumns = genes.groupByFamilyWithColumns 4
+    geneFamilyColumns = genes.groupByFamilyWithColumns 3
 
     res.render 'index2',
       featuredGenes: featuredGenes
