@@ -31,12 +31,15 @@ OrderedSets = require '../../collections/ordered_sets'
     geneCategories.fetchAll(cache: true)
     genes.fetchUntilEndInParallel(cache: true, data: published: true, sort: 'name')
   ]).done ->
-    aToZGroup = genes.groupByAlphaWithColumns 3
+    geneFamilies = genes.groupByFamily()
+    geneFamilyColumns = genes.groupByFamilyWithColumns 4
 
     res.render 'index2',
       featuredGenes: featuredGenes
       geneCategories: geneCategories
-      aToZGroup: aToZGroup
+      genes: genes
+      geneFamilies: geneFamilies
+      geneFamilyColumns: geneFamilyColumns
 
 @redirectCategory = (req, res) ->
   res.redirect 301, req.url.replace 'category', 'categories'

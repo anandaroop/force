@@ -46,5 +46,33 @@
   line-height 1
   text-shadow 0 0 5px rgba(black, .125)
 
-.categories-az-header
+.categories-az-header // deprecate
   padding 40px 0
+
+.gene-families
+  display block
+  pre
+    background #eee
+.gene-families__family
+  border-top solid 1px gray-color
+  margin 60px 0 0 0
+.gene-families__family__name
+  font-size 30px
+  padding 20px 0 30px 0
+.gene-families__family__gene
+  a
+    display block
+    padding 5px 20px 5px 0
+    text-decoration none
+    overflow ellipsis
+    transition color 0.125s
+    color black
+    &:hover
+      color purple-color
+
+.gene-families__columns
+  display block
+.gene-families__columns__column
+  display inline-block
+  vertical-align top
+  width 25%

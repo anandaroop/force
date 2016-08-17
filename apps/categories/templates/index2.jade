@@ -7,6 +7,7 @@ append locals
   - assetPackage = 'categories'
 
 block body
+
   .categories-page.main-layout-container
     header.categories-header.sixty-forty-bisected-header
       .bisected-header-cell
@@ -28,6 +29,18 @@ block body
             .csc-title
               = gene.get('title')
 
+    section.gene-families
+      for family in geneFamilyColumns
+        .gene-families__family
+          .gene-families__family__name
+            = family.name
+          .gene-families__columns
+            for column in family.columns
+              .gene-families__columns__column
+                for gene in column
+                  .gene-families__family__gene
+                    a( href = gene.href() )= gene.get('name')
+
     if geneCategories && geneCategories.at(0)
       section#categories-page-gene-categories
         for categorySet in geneCategories.at(0).get('items').models
@@ -43,9 +56,3 @@ block body
                   )
                   .csc-title
                     = gene.get('title')
-
-    h3.categories-az-header.js-categories-az-header
-      | All Categories A–Z
-
-    section.all-genes-list
-      include ../../../components/a_to_z_list/template
