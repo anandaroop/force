@@ -8,8 +8,12 @@ routes =
   ''': require('../apps/categories/client.coffee').init
 
   '''
-  /categories2
+  /categories2$
   ''': require('../apps/categories2/client/index.coffee').init
+
+  '''
+  /categories2b$
+  ''': require('../apps/categories2b/client.js').default
 
   '''
   /tag
