@@ -26,7 +26,7 @@ const FeaturedGenes = ({ featuredGenes }) => {
         ? featuredGenes.genes.length > 0
           ? featuredGenes.genes
               .slice(0, 3)
-              .map(featuredGene => <FeaturedGene {...featuredGene} />)
+              .map(featuredGene => <FeaturedGene key={featuredGene.href} {...featuredGene} />)
           : <p style={{ color: 'orange' }}>
               missing Featured Links?<br />(No featuredGenes.genes list)
             </p>

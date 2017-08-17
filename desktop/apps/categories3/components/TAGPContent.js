@@ -16,7 +16,8 @@ const ResponsiveContent = styled.main`
 `
 
 const propTypes = {
-  geneFamilies: PropTypes.array.isRequired
+  geneFamilies: PropTypes.array.isRequired,
+  allFeaturedGenesByFamily: PropTypes.array.isRequired
 }
 
 const TAGPContent = ({ geneFamilies, allFeaturedGenesByFamily }) => {
