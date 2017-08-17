@@ -2,12 +2,15 @@ import App from './components/App'
 import { renderReactLayout } from 'desktop/components/react/utils/renderReactLayout'
 import metaphysics from 'lib/metaphysics.coffee'
 import GeneFamiliesQuery from './queries/geneFamilies'
+import FeaturedGenesQuery from './queries/featuredGenes'
 
 export const index = async (req, res, next) => {
   try {
     const { gene_families: geneFamilies } = await metaphysics({
-      query: GeneFamiliesQuery(),
-      req: req
+      query: GeneFamiliesQuery()
+    })
+    const { gene_families: allFeaturedGenesByFamily } = await metaphysics({
+      query: FeaturedGenesQuery()
     })
 
     const layout = renderReactLayout({
@@ -21,7 +24,8 @@ export const index = async (req, res, next) => {
         assetPackage: 'categories3'
       },
       data: {
-        geneFamilies
+        geneFamilies,
+        allFeaturedGenesByFamily
       }
     })
 
