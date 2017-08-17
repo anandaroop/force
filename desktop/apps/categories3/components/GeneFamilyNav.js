@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import { scrollToFamily } from '../helpers/utils'
+
 const propTypes = {
   geneFamilies: PropTypes.array.isRequired
 }
@@ -50,7 +52,10 @@ const GeneFamilyNav = ({ geneFamilies }) => {
       <GeneFamilyList>
         {geneFamilies.map(geneFamily =>
           <GeneFamilyItem key={geneFamily.id}>
-            <GeneFamilyLink href={`#${geneFamily.id}`}>
+            <GeneFamilyLink
+              href={`#${geneFamily.id}`}
+              onClick={e => scrollToFamily(e)}
+            >
               {geneFamily.name}
             </GeneFamilyLink>
           </GeneFamilyItem>
