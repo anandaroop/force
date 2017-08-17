@@ -3,12 +3,14 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import Gene from './Gene'
+import FeaturedGenes from './FeaturedGenes'
 import { alphabetizeGenes } from '../helpers/utils.js'
 
 const propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  genes: PropTypes.array.isRequired
+  genes: PropTypes.array.isRequired,
+  featuredGenes: PropTypes.object
 }
 
 const GeneFamilyName = styled.h2`
@@ -26,13 +28,14 @@ const GeneList = styled.ul`
   }
 `
 
-const GeneFamily = ({ id, name, genes }) => {
+const GeneFamily = ({ id, name, genes, featuredGenes }) => {
   const sortedGenes = alphabetizeGenes(genes)
   return (
     <div id={id}>
       <GeneFamilyName>
         {name}
       </GeneFamilyName>
+      <FeaturedGenes featuredGenes={featuredGenes} />
       <GeneList>
         {sortedGenes.map(gene => <Gene key={gene.id} {...gene} />)}
       </GeneList>

@@ -15,11 +15,11 @@ const ResponsiveContent = styled.main`
 const propTypes = {
   geneFamilies: PropTypes.array.isRequired
 }
-const TAGPContent = ({ geneFamilies }) => {
+const TAGPContent = ({ geneFamilies, allFeaturedGenesByFamily }) => {
   return (
     <ResponsiveContent>
       <TAGPIntro />
-      <GeneFamilies geneFamilies={geneFamilies} />
+      <GeneFamilies geneFamilies={geneFamilies} allFeaturedGenesByFamily={allFeaturedGenesByFamily} />
     </ResponsiveContent>
   )
 }
