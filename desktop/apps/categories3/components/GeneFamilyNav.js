@@ -35,8 +35,9 @@ const GeneFamilyList = styled.ul`
 const GeneFamilyItem = styled.li`margin-bottom: 1em;`
 
 const GeneFamilyLink = styled.a`
-  transition: color 0.125s;
   text-decoration: none;
+  color: #999999;
+  transition: color 0.125s;
 
   &:hover {
     color: #6e1fff;
