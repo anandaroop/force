@@ -6,18 +6,23 @@ import { featuredGenesForFamily } from '../utils.js'
 
 const propTypes = {
   geneFamilies: PropTypes.array.isRequired,
-  allFeaturedGenesByFamily: PropTypes.array.isRequired
+  allFeaturedGenesByFamily: PropTypes.array.isRequired,
+  onHighlightFamily: PropTypes.func.isRequired
 }
 
-const GeneFamilies = ({ geneFamilies, allFeaturedGenesByFamily }) => {
+const GeneFamilies = ({ geneFamilies, allFeaturedGenesByFamily, onHighlightFamily }) => {
   return (
     <div>
       {geneFamilies.map(geneFamily => {
-        const featuredGenes = featuredGenesForFamily(
-          geneFamily.name,
-          allFeaturedGenesByFamily
+        const featuredGenes = featuredGenesForFamily(geneFamily.name, allFeaturedGenesByFamily)
+        return (
+          <GeneFamily
+            key={geneFamily.id}
+            featuredGenes={featuredGenes}
+            {...geneFamily}
+            onHighlightFamily={onHighlightFamily}
+          />
         )
-        return <GeneFamily key={geneFamily.id} featuredGenes={featuredGenes} {...geneFamily} />
       })}
     </div>
   )

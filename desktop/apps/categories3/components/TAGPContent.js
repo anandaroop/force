@@ -7,7 +7,8 @@ import GeneFamilies from './GeneFamilies'
 
 const propTypes = {
   geneFamilies: PropTypes.array.isRequired,
-  allFeaturedGenesByFamily: PropTypes.array.isRequired
+  allFeaturedGenesByFamily: PropTypes.array.isRequired,
+  onHighlightFamily: PropTypes.func.isRequired
 }
 
 const ResponsiveContent = styled.main`
@@ -17,11 +18,15 @@ const ResponsiveContent = styled.main`
     width: 74%;
   }
 `
-const TAGPContent = ({ geneFamilies, allFeaturedGenesByFamily }) => {
+const TAGPContent = ({ geneFamilies, allFeaturedGenesByFamily, onHighlightFamily }) => {
   return (
     <ResponsiveContent>
       <TAGPIntro />
-      <GeneFamilies geneFamilies={geneFamilies} allFeaturedGenesByFamily={allFeaturedGenesByFamily} />
+      <GeneFamilies
+        geneFamilies={geneFamilies}
+        allFeaturedGenesByFamily={allFeaturedGenesByFamily}
+        onHighlightFamily={onHighlightFamily}
+      />
     </ResponsiveContent>
   )
 }
