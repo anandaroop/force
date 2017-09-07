@@ -16,14 +16,33 @@ class App extends Component {
     allFeaturedGenesByFamily: PropTypes.array.isRequired
   }
 
+  constructor (props) {
+    super(props)
+    this.state = {
+      highlightedFamily: null
+    }
+    this.highlightFamily = this.highlightFamily.bind(this)
+  }
+
+  highlightFamily (id) {
+    this.setState({
+      highlightedFamily: id
+    })
+  }
+
   render () {
     const { geneFamilies, allFeaturedGenesByFamily } = this.props
+    const { highlightedFamily } = this.state
     return (
       <Layout>
-        <GeneFamilyNav geneFamilies={geneFamilies} />
+        <GeneFamilyNav
+          geneFamilies={geneFamilies}
+          highlightedFamily={highlightedFamily}
+        />
         <TAGPContent
           geneFamilies={geneFamilies}
           allFeaturedGenesByFamily={allFeaturedGenesByFamily}
+          onHighlightFamily={this.highlightFamily}
         />
       </Layout>
     )
