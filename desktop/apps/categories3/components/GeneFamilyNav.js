@@ -7,7 +7,8 @@ import { primary } from '@artsy/reaction-force/dist/assets/fonts'
 import { frameAnimator } from '../utils'
 
 const propTypes = {
-  geneFamilies: PropTypes.array.isRequired
+  geneFamilies: PropTypes.array.isRequired,
+  highlightedFamily: PropTypes.string
 }
 
 const ResponsiveSidebar = styled.aside`
@@ -26,8 +27,7 @@ const GeneFamilyList = styled.ul`
   width: inherit;
   padding-right: 2em;
 
-  ${primary.style}
-  font-size: 13px;
+  ${primary.style} font-size: 13px;
   line-height: 1.33em;
 `
 
@@ -36,6 +36,7 @@ const GeneFamilyItem = styled.li`margin-bottom: 1em;`
 const GeneFamilyLink = styled.a`
   transition: color 0.125s;
   text-decoration: none;
+  color: ${props => (props.highlighted ? colors.purpleRegular : 'initial')};
 
   &:hover {
     color: ${colors.purpleRegular};
@@ -67,7 +68,7 @@ class GeneFamilyNav extends React.Component {
   }
 
   render () {
-    const { geneFamilies } = this.props
+    const { geneFamilies, highlightedFamily } = this.props
     return (
       <ResponsiveSidebar>
         <GeneFamilyList>
@@ -76,6 +77,7 @@ class GeneFamilyNav extends React.Component {
               <GeneFamilyLink
                 href={`#${geneFamily.id}`}
                 onClick={this.handleClick}
+                highlighted={highlightedFamily === geneFamily.id}
               >
                 {geneFamily.name}
               </GeneFamilyLink>
