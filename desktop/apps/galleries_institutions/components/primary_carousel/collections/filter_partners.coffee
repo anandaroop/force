@@ -16,9 +16,14 @@ module.exports = class FilterPartners extends Partners
     _.extend data, _.omit options.data, 'category', 'location', 'type'
 
     data.partner_categories = [options.data.category] if options.data.category
-
+    console.log('locatino slug', options.data.location)
     city = _.findWhere Cities, slug: options.data.location if options.data.location
+    console.log('Cities', Cities)
+    console.log('city', city)
     data.near = city.coords.join (',') if city
     data.type = if options.data.type is 'gallery' then ['PartnerGallery'] else ['PartnerInstitution', 'PartnerInstitutionalSeller']
+    console.log('data', data)
     options.data = decodeURIComponent qs.stringify(data, { arrayFormat: 'brackets' })
+    console.log('options', options)
+
     super

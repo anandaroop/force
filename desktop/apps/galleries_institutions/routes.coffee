@@ -53,28 +53,30 @@ fetchPartnerCategories = (type) ->
   partnerCities = new PartnerCities()
   partnerFeaturedCities = new PartnerFeaturedCities()
 
-  Promise.all([
-    fetchPrimaryCarousel(params)
-    partnerCities.fetch(cache: true)
-    partnerFeaturedCities.fetch(cache: true)
-    fetchPartnerCategories(type)
-  ])
-    .then ([profiles, partnerCities, partnerFeaturedCities, categories]) ->
-      res.locals.sd.MAIN_PROFILES = profiles.toJSON()
+  partnerCities.fetch(cache: true)
+    .then (partnerCities) ->
+      console.log('partnerCities 1st fetch' , partnerCities)
       res.locals.sd.PARTNER_CITIES = partnerCities
-      res.locals.sd.PARTNER_FEATURED_CITIES = partnerFeaturedCities
-      res.locals.sd.CATEGORIES = _.map(categories, (c) -> _.pick c, 'id', 'name')
+      Promise.all([
+        fetchPrimaryCarousel(params)
+        partnerFeaturedCities.fetch(cache: true)
+        fetchPartnerCategories(type)
+      ])
+        .then ([profiles, partnerCities, partnerFeaturedCities, categories]) ->
+          res.locals.sd.MAIN_PROFILES = profiles.toJSON()
+          res.locals.sd.PARTNER_FEATURED_CITIES = partnerFeaturedCities
+          res.locals.sd.CATEGORIES = _.map(categories, (c) -> _.pick c, 'id', 'name')
 
-      res.render 'index',
-        ViewHelpers: ViewHelpers
-        showAZLink: true
-        type: type
-        profiles: profiles.models
-        categories: _.shuffle categories
-        facets: facetDefaults(type)
-        state: if _.isEmpty(searchParams) then 'landing' else 'search'
+          res.render 'index',
+            ViewHelpers: ViewHelpers
+            showAZLink: true
+            type: type
+            profiles: profiles.models
+            categories: _.shuffle categories
+            facets: facetDefaults(type)
+            state: if _.isEmpty(searchParams) then 'landing' else 'search'
 
-    .catch -> next()
+        .catch -> next()
 
 # A to Z page
 
