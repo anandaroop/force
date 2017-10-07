@@ -14,15 +14,21 @@ describe('GeneFamily', () => {
       genes: [
         {
           id: 'gold',
-          name: 'Gold'
+          name: 'Gold',
+          display_name: null,
+          is_published: true
         },
         {
           id: 'silver',
-          name: 'Silver'
+          name: 'Silver',
+          display_name: null,
+          is_published: true
         },
         {
           id: 'bronze',
-          name: 'Bronze'
+          name: 'Bronze',
+          display_name: null,
+          is_published: true
         }
       ]
     }
@@ -73,7 +79,7 @@ describe('GeneFamily', () => {
   })
 
   it('renders image links for featured genes', () => {
-    rendered.find('a + img').length.should.equal(3)
+    rendered.find('span + img').length.should.equal(3)
   })
 
   it('renders a list of genes', () => {
