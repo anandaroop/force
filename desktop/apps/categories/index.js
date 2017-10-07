@@ -8,4 +8,4 @@ const app = module.exports = express()
 app.set('view engine', 'jade')
 app.set('views', `${__dirname}/components`)
 
-app.get('/categories', adminOnly, routes.index)
+app.get('/categories', routes.index)
