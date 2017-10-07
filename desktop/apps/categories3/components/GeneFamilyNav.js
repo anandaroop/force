@@ -35,6 +35,8 @@ const GeneFamilyList = styled(Scrollspy)`
   ${primary.style};
   font-size: 13px;
   line-height: 1.33em;
+
+  background: white;
 `
 
 const GeneFamilyItem = styled.li`
