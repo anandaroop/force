@@ -1,9 +1,9 @@
 import sinon from 'sinon'
-import App from 'desktop/apps/categories3/components/App'
+import App from 'desktop/apps/categories/components/App'
 import {
   index,
   __RewireAPI__ as RoutesRewireApi
-} from 'desktop/apps/categories3/routes'
+} from 'desktop/apps/categories/routes'
 
 let req
 let res
@@ -54,7 +54,7 @@ describe('#index', () => {
     index(req, res, next).then(() => {
       renderLayout.args[0][0].blocks.body.should.equal(App)
       renderLayout.args[0][0].locals.assetPackage.should.equal(
-        'categories3'
+        'categories'
       )
     })
   })
