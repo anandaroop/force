@@ -45,7 +45,7 @@ fetchMetaphysicsData = (req, showHeroUnits, showCollectionsHubs)->
       "query-input": "required name=search_term_string"
     }
   }
-  
+
   showCollectionsHubs = res.locals.sd.COLLECTION_HUBS == "experiment"
   res.locals.sd.PAGE_TYPE = 'home'
   initialFetch = Q
@@ -62,7 +62,6 @@ fetchMetaphysicsData = (req, showHeroUnits, showCollectionsHubs)->
 
       res.locals.sd.HERO_UNITS = heroUnits
       res.locals.sd.USER_HOME_PAGE = homePage.artwork_modules
-      res.locals.sd.COLLECTIONS_HUBS_DATA = collectionsHubs
 
       # for pasing data to client side forgot code
       res.locals.sd.RESET_PASSWORD_REDIRECT_TO = req.query.reset_password_redirect_to
@@ -75,5 +74,6 @@ fetchMetaphysicsData = (req, showHeroUnits, showCollectionsHubs)->
         viewHelpers: viewHelpers
         browseCategories: browseCategories
         jsonLD: JSON.stringify jsonLD
+        collectionsHubs: collectionsHubs
 
     .catch next

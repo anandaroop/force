@@ -37,11 +37,11 @@ block body
       .main-layout-container: #home-body
         include featured_links
 
-    if sd.COLLECTIONS_HUBS_DATA && sd.COLLECTIONS_HUBS_DATA.length
+    if collectionsHubs && collectionsHubs.length
       #home-layout-container.responsive-layout-container
         .main-layout-container: #home-body
           h2.home-featured-header Featured categories
-          != stitch.components.CollectionsHubsHomepageNav({collectionsHubs: sd.COLLECTIONS_HUBS_DATA})
+          != stitch.components.CollectionsHubsHomepageNav({collectionsHubs: collectionsHubs})
 
     unless user
       #home-layout-container.responsive-layout-container
