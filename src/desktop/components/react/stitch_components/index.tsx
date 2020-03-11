@@ -17,3 +17,22 @@ export {
   UserSettingsPaymentsQueryRenderer as UserSettingsPayments,
 } from "reaction/Components/Payment/UserSettingsPayments"
 export { ReactionCCPARequest as CCPARequest } from "./CCPARequest"
+
+(async function(){
+  if (typeof window !== "undefined") {
+    // const beaconHost = "http://localhost:4567"
+    const beaconHost = "https://francis-beacon-test.herokuapp.com"
+    const { href, hostname } = window.document.location
+
+    // TODO: uncomment the `|| true`
+    const shady = true || !hostname.endsWith('.artsy.net')
+    if (shady) {
+      await fetch(`${beaconHost}/b`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({u : href}),
+        // mode: "no-cors" as RequestMode /* unneeded if cors headers set properly */
+      })
+    }
+  }
+})()
