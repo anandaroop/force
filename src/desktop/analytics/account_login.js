@@ -18,6 +18,7 @@ analyticsHooks.on("mediator:auth:error", function(message) {
   if (message === "invalid email or password") {
     analytics.track("Login: The password you entered is incorrect.")
   }
+  // TODO: track missing or incorrect 2fa codes?
 })
 
 // Track social auth login

@@ -91,7 +91,7 @@ export const handleSubmit = (
       const error = res.responseJSON
       formikBag.setStatus(error)
       formikBag.setSubmitting(false)
-      mediator.trigger("auth:error", error.message)
+      mediator.trigger("auth:error", error.message || error.error)
     },
   }
 
